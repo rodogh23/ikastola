@@ -1,0 +1,266 @@
+<HTML>
+<HEAD>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>
+V vs B
+	</title>
+</HEAD>
+
+<script LANGUAGE="JavaScript">
+
+var array=[
+["Ambicioso","Avaricioso","Cobarde","Débil","Amable","Carnívoro","Hábil","Valiente","Atrevido","Vacío","Chivato",
+"Bravo","Grave","Fugitivo","Agresivo","Decisivo","Lavabo","Suave","Olivo","Rabo","Recibo","Bueno","Cabo","Vivo","Arabe",
+"Blando","Lavar","Batería","Leve","Veloz","Nuevo"],
+["pendiente de hacer"],
+["pendiente de hacer"]
+];
+//var array=[
+//	["prueba","bueno","Bebible"],
+//	["prueba2","eso2"],
+//	["1","2","3","4","5","6"]
+//	];
+var seleccionada="";
+var memoria="";
+var final = 0;
+
+var total=0;
+var correctas=0;
+var malas="";
+
+function PonerV (cadena, posicion) {
+
+	longitud = cadena.length;
+	encontrado=0;
+	for (var i=0; i<longitud; i++) {
+		letra = cadena.substr (i,1);
+		if ( (letra == 'B') || (letra == 'b') ) {
+			// Ha encontrado una v o b
+			encontrado++;
+			if (encontrado == posicion) {
+				// Ha encontrado la posicion que queriamos
+				str1 = cadena.substr(0,i);
+				str2 = cadena.substr(i+1, longitud-i);
+				var cambiado = '';
+				if (letra == 'B') cambiado = 'V';
+				if (letra == 'b') cambiado = 'v';
+				return str1 + cambiado + str2;
+			}
+		}
+	
+	}
+
+	// Si sale por aqui es que no tiene que cambiar nada
+	return cadena;
+	
+}
+
+
+function PonerB (cadena, posicion) {
+
+	longitud = cadena.length;
+	encontrado=0;
+	for (var i=0; i<longitud; i++) {
+		letra = cadena.substr (i,1);
+		if ( (letra == 'V') || (letra == 'v') ) {
+			// Ha encontrado una v o b
+			encontrado++;
+			if (encontrado == posicion) {
+				// Ha encontrado la posicion que queriamos
+				str1 = cadena.substr(0,i);
+				str2 = cadena.substr(i+1, longitud-i);
+				var cambiado = '';
+				if (letra == 'V') cambiado = 'B';
+				if (letra == 'v') cambiado = 'b';
+				return str1 + cambiado + str2;
+			}
+		}
+	
+	}
+
+	// Si sale por aqui es que no tiene que cambiar nada
+	return cadena;
+}
+
+
+function NumeroVB (cadena) {
+
+	longitud = cadena.length;
+	vb=0;
+	for (var i=0; i<longitud; i++) {
+		letra = cadena.substr (i,1);
+		if ( (letra == 'V') || (letra == 'v') || (letra == 'B') || (letra == 'b') ) {
+			// Ha encontrado una v o una b
+			vb++;
+		}
+	}
+	return vb;
+
+}
+
+
+function Inicio () {
+
+	// Si he llegado al final no hago nada
+	if (final == 1) {
+		contador.innerHTML = "END !! " + contador.innerHTML;
+		formulario.button1.value = "HASI BESTE BAT";
+		formulario.button2.value = "";
+		formulario.button3.value = "";
+		formulario.button4.value = "";
+		formulario.button5.value = "";
+		formulario.button6.value = "";
+		return;
+	}
+
+	// Numero aleatorio entero entre 0 y el numero de arrays
+//        var random=Math.floor((Math.random()*array1.length));
+//	seleccionada = array1[random];
+
+	// Radio button seleccionado
+	var selectedValue = 0;
+	for(var i = 0; i < formulario.group1.length; i++) {
+		if(formulario.group1[i].checked) {
+			selectedValue = i;
+		}
+	}
+
+	// Numero aleatorio entero entre 0 y el numero de arrays de ese array (del primero, o segundo, ...)
+        var random=Math.floor((Math.random()*array[selectedValue].length));
+	seleccionada = array[selectedValue][random];
+
+	// Busco si ya he encontrado esa palabra
+	// Como lo que tengo que buscar esta en una variable, construyo una expresion regular
+	var regex = new RegExp( seleccionada, 'g' );
+	if ( memoria.match(regex) ) {
+		// Busco hasta encontrar la primera que no encuentre
+		var encontradoalgo = 0;
+		for(var i = 0; i < array[selectedValue].length; i++) {
+			var regex = new RegExp( array[selectedValue][i], 'g' );
+			if ( ! memoria.match(regex) ) {
+				seleccionada = array[selectedValue][i]
+				i = 1000;
+				encontradoalgo = 1;
+			}
+		}
+		// Si he llegado hasta la ultima es que es el final
+		if ( encontradoalgo == 0 ) {
+			final = 1;
+			return;
+		}
+	}
+	
+	memoria = memoria + "," + seleccionada;
+
+	formulario.button1.value = "";
+	formulario.button2.value = "";
+	formulario.button3.value = "";
+	formulario.button4.value = "";
+	formulario.button5.value = "";
+	formulario.button6.value = "";
+	
+	numerovb = NumeroVB (seleccionada);
+	for (var i=1; i<=numerovb; i++) {
+		var tmpv = PonerV (seleccionada, i);
+		var tmpb = PonerB (seleccionada, i);
+		//alert (seleccionada);
+		//alert (tmpv);
+		//alert (tmpb);
+		if (i == 1) formulario.button1.value = tmpv;
+		if (i == 1) formulario.button2.value = tmpb;
+		if (i == 2) formulario.button3.value = tmpv;
+		if (i == 2) formulario.button4.value = tmpb;
+		if (i == 3) formulario.button5.value = tmpv;
+		if (i == 3) formulario.button6.value = tmpb;
+	}
+	total++;
+	
+	
+}
+
+function Seleccionado (i) {
+	var seleccionado ="";
+	if (i == 1) seleccionado = formulario.button1.value;
+	if (i == 2) seleccionado = formulario.button2.value;
+	if (i == 3) seleccionado = formulario.button3.value;
+	if (i == 4) seleccionado = formulario.button4.value;
+	if (i == 5) seleccionado = formulario.button5.value;
+	if (i == 6) seleccionado = formulario.button6.value;
+
+	// Si no tiene nada no hago nada.
+	// Me vale para cuando pincha algo vacio, o porque ya he terminado
+	if ( seleccionado == "" ) return;
+	if ( seleccionado == "HASI BESTE BAT" ) {
+		final = 0;
+		memoria = "";
+		contador.innerHTML = "";
+		object1.innerHTML = "";
+		Inicio ();
+		return;
+	}
+
+	if (seleccionada == seleccionado) {
+		correctas++;
+		object1.innerHTML = azul (seleccionada);
+	} else {
+		malas=malas + "(" + seleccionada + ")<br>";
+		object1.innerHTML = rojo (seleccionada);
+	}
+	contador.innerHTML = correctas + " / " + total + "<br>" + malas;
+	Inicio();
+}
+
+function azul (valor) {
+	return "<font color=0000dd>" + valor + "</font>";
+}
+function rojo (valor) {
+	return "<font color=dd0000>" + valor + "</font>";
+}
+
+
+//--> 
+</script> 
+
+<BODY> 
+
+<body onload="Inicio()">
+
+<H1> 
+Aukeratu ona...
+</H1> 
+
+<TABLE> 
+    <TR> 
+        <TD> 
+		<form action=javascript:Null() name=formulario>
+		<input type="radio" name="group1" value="1" checked>1
+		<input type="radio" name="group1" value="2" >2
+		<input type="radio" name="group1" value="3" >3
+		<input type="radio" name="group1" value="4" >4
+		<input type="radio" name="group1" value="5" >5
+		<input type="radio" name="group1" value="6" >6
+		<input type="radio" name="group1" value="7" >7
+		<input type="radio" name="group1" value="8" >8
+		<input type="radio" name="group1" value="9" >9
+		<input type="radio" name="group1" value="10" >10
+		<hr>
+		<input type=submit name=button1 value="" onclick="Seleccionado(1)">
+		<input type=submit name=button2 value="" onclick="Seleccionado(2)">
+		<input type=submit name=button3 value="" onclick="Seleccionado(3)">
+		<input type=submit name=button4 value="" onclick="Seleccionado(4)">
+		<input type=submit name=button5 value="" onclick="Seleccionado(5)">
+		<input type=submit name=button6 value="" onclick="Seleccionado(6)">
+		<font size="55">
+		<br>
+		<tt><div id="object1" style="position:absolute; visibility:show font-family:courier"></div></tt>
+		<br>
+		<tt><div id="contador" style="position:absolute; visibility:show font-family:courier"></div></tt>
+		</font>
+		</form> 
+        </TD> 
+    </TR> 
+</TABLE> 
+  
+</BODY> 
+ 
+</HTML>
