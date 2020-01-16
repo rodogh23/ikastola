@@ -1,0 +1,115 @@
+<HTML>
+<HEAD>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>
+Gehiketak egin
+</title>
+</HEAD>
+<script LANGUAGE="JavaScript">
+var mult1;
+var mult2;
+var resto;
+var proceso; // 1. Tengo que dar el primer d?gito. Es posible que si es menor de 10 ya valga
+       // 2. Tengo que dar el segundo d?gito
+       var total=0;
+       var correctas=0;
+       var digito1;
+
+       function Inicio ()
+       {
+       // Numero aleatorio entero entre 1 y 9
+mult1=Math.floor((Math.random()*8)+1);
+mult2=Math.floor((Math.random()*8)+1);
+object1.innerHTML = mult1 + " + " + mult2 + " = ";
+
+// Que me de la division
+proceso=1;
+total=total+1;
+}
+
+function Random (valor)
+{
+
+var lproceso;
+
+if (proceso == 1) {
+
+if (mult1 + mult2 < 10) {
+if (valor == mult1 + mult2) {
+correctas=correctas+1;
+object1.innerHTML = mult1 + " + " + mult2 + " = " +
+                                  "<font color=0000dd>" + (mult1 + mult2 + 0) + "</font>";
+  } else {
+object1.innerHTML = mult1 + " + " + mult2 + " = " +
+                                  "<font color=dd0000>" + (mult1 + mult2 + 0) + "</font>";
+  }
+lproceso=0;
+} else {
+digito1 = valor;
+lproceso=2;
+}
+
+}
+
+if (proceso == 2) {
+
+if (digito1 * 10 + valor == mult1 + mult2) {
+correctas=correctas+1;
+object1.innerHTML = mult1 + " + " + mult2 + " = " +
+                                  "<font color=0000dd>" + (mult1 + mult2 + 0) + "</font>";
+  } else {
+object1.innerHTML = mult1 + " + " + mult2 + " = " +
+                                  "<font color=dd0000>" + (mult1 + mult2 + 0) + "</font>";
+  }
+lproceso=0;
+}
+
+proceso=lproceso;
+
+if (lproceso == 0) {
+contador.innerHTML = correctas + " / " + total;
+}
+
+}
+    
+   //--> 
+      </script> 
+          
+         <BODY> 
+     
+    <H1> 
+       Gehitu...
+          </H1> 
+      
+     <TABLE> 
+            <TR> 
+                   <TD> 
+   <font size="55">
+<tt><div id="object1" style="position:absolute; visibility:show font-family:courier"></div></tt>
+<br>
+</font>
+<form action=javascript:Null() name=formulario> 
+<input type=submit name=button value="Hasi" onclick="Inicio()"> 
+<input type=submit name=button value=0 onclick="Random(0)"> 
+<input type=submit name=button value=1 onclick="Random(1)"> 
+<input type=submit name=button value=2 onclick="Random(2)"> 
+<input type=submit name=button value=3 onclick="Random(3)"> 
+<input type=submit name=button value=4 onclick="Random(4)"> 
+<input type=submit name=button value=5 onclick="Random(5)"> 
+<input type=submit name=button value=6 onclick="Random(6)"> 
+<input type=submit name=button value=7 onclick="Random(7)"> 
+<input type=submit name=button value=8 onclick="Random(8)"> 
+<input type=submit name=button value=9 onclick="Random(9)"> 
+<tt>
+<font size="25">
+<div id="contador" style="position:absolute; visibility:show; font-family:courier; fontsize:2"></div>
+</font
+<br>
+</form> 
+        </TD> 
+    </TR> 
+        </TABLE> 
+      
+    </BODY> 
+         
+        </HTML>
