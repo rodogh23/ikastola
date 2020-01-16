@@ -1,0 +1,136 @@
+<HTML>
+<HEAD>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>
+Kenketak egin
+</title>
+</HEAD>
+<script LANGUAGE="JavaScript">
+var number1;
+var number2;
+var resto;
+       var total=0;
+       var correctas=0;
+var malas="";
+var parcial;
+
+var iteraccion;
+
+function azul (valor) {
+	return "<font color=0000dd>" + valor + "</font>";
+}
+function rojo (valor) {
+	return "<font color=dd0000>" + valor + "</font>";
+}
+
+function Delete () {
+
+	var digitos = parcial / 10;
+	if (digitos > 0) {
+		var numero = digitos.toString().substring(0,iteraccion-2);
+		iteraccion = iteraccion - 1;
+		parcial = numero * 10;
+		object1.innerHTML = number1 + " - " + number2 + " = " + (numero);
+	}
+
+}
+
+function Inicio ()
+{
+
+	// Tal y como esa programado, vale para restas de numeros de da igual cuantas cifras
+
+	// Numero aleatorio entero entre 2 y 9
+	number1=Math.floor((Math.random()*8)+2);
+	//number1=Math.floor((Math.random()*118)+2);
+
+	// Numero aleatorio entero entre 2 y 20
+	number2=Math.floor((Math.random()*19)+2);
+	//number2=Math.floor((Math.random()*11119)+2);
+
+	if (number1 < number2) {
+		var tmp=number1;
+		number1=number2;
+		number2=tmp;
+	}
+
+	object1.innerHTML = number1 + " - " + number2 + " = ";
+
+	// Que me de la division
+	total=total+1;
+
+	// Guardar el resultado temporal que me van poniendo
+	iteraccion = 1;
+	parcial = 0;
+}
+
+function Random (valor)
+{
+
+	// Ver cuantos digitos tiene el resultado, y si estoy en en la iteraccion correcta	
+	var resultado = number1 - number2; 
+	var digitos = resultado.toString().length
+
+	var lparcial = parcial + valor;
+
+	if (digitos == iteraccion) {
+		// El numero de digitos del resultado coincide con la interaccion. Ya hemos llegado al final
+		if (number1 - number2 == lparcial) {
+			correctas=correctas+1;
+			object1.innerHTML = number1 + " - " + number2 + " = " + azul (number1 - number2);
+		} else {
+			object1.innerHTML = number1 + " - " + number2 + " = " + rojo (number1 - number2);
+			malas=malas + "(" + number1 + " - " + number2 + ")<br>";
+		}
+		contador.innerHTML = correctas + " / " + total + "<br>" + malas;
+		interaccion = 1;
+		parcial = 0;
+	} else {
+		// No coincide. Hay que esperar y guardo el resultado
+		object1.innerHTML = number1 + " - " + number2 + " = " + (parcial + valor);
+		parcial = (parcial + valor) * 10;
+		iteraccion = iteraccion + 1;
+	}
+
+}
+    
+//--> 
+</script> 
+          
+<BODY> 
+<H1> 
+       Errestatu
+</H1> 
+<TABLE> 
+<TR> 
+<TD> 
+<font size="55">
+<tt><div id="object1" style="position:absolute; visibility:show font-family:courier"></div></tt>
+<br>
+</font>
+<form action=javascript:Null() name=formulario> 
+<input type=submit name=button value="Hasi" onclick="Inicio()"> 
+<input type=submit name=button value=0 onclick="Random(0)"> 
+<input type=submit name=button value=1 onclick="Random(1)"> 
+<input type=submit name=button value=2 onclick="Random(2)"> 
+<input type=submit name=button value=3 onclick="Random(3)"> 
+<input type=submit name=button value=4 onclick="Random(4)"> 
+<input type=submit name=button value=5 onclick="Random(5)"> 
+<input type=submit name=button value=6 onclick="Random(6)"> 
+<input type=submit name=button value=7 onclick="Random(7)"> 
+<input type=submit name=button value=8 onclick="Random(8)"> 
+<input type=submit name=button value=9 onclick="Random(9)"> 
+<input type=submit name=button value='<-' onclick="Delete()"> 
+<tt>
+<font size="25">
+<div id="contador" style="position:absolute; visibility:show; font-family:courier; fontsize:2"></div>
+</font
+<br>
+</form> 
+</TD> 
+</TR> 
+</TABLE> 
+      
+</BODY> 
+         
+</HTML>
