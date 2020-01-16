@@ -1,0 +1,95 @@
+<HTML>
+<HEAD>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>
+Tiempos Verbales Indicativo - Subjuntivo - Imperativo
+	</title>
+</HEAD>
+
+<script LANGUAGE="JavaScript">
+
+   function Random () 
+   {
+		var array2=[
+			"",
+			"como","van","piensan","hacemos","bailais",
+			  "comían","bailabais","freías","dormía","rezaba",
+			  "hizo","mataron","reiste","bailamos","trajeron",
+			  "habéis pensado","han reído","ha dormido","has traído","habéis llevado",
+			  "había copiado","habíais empezado","habían visto","habíamos pensado","habías introducido",
+			  "hube mirado","hubo empezado","hubistes cantado","hubieron impreso","hubieron planchado",
+			"miraré","irá","vendremos","cocinarás","reiréis",
+			"habré marchado","habrá comido","habremos encendido","habrán subido","habréis vendido",
+			"compraría","venderíamos","marcharían","invitaríais","aprobarías",
+			"habría leído","habríais escrito","habrían cantado","habráis visto","habrías mirado",
+			  "venga","coma","ría","baile","canten",
+			  "cocinaras","bailases","rieran","trajerais","hiciesen",
+			  "haya venido","hayáis comido","hayan pensado","hayamos escrito","hayas copiado",
+			  "hubiera planchado","hubiese roto","hubiérais cogido","hubieran pintado","hubieras copiado",
+			""
+			];
+		var array1=[
+			"",
+			"Presente 1 sing Comer","Presente 3 plural Ir","Presente 3 plural Pensar","Presente 1 plural Hacer","Presente 2 plural Bailar",
+			  "Pretérito Imperfecto 3 plural Comer","Pretérito Imperfecto 2 plura Bailar","Pretérito Imperfecto 2 sing Freir","Pretérito Imperfecto 1 sing Dormir","Pretérito Imperfecto 3 plural Rezar",
+			  "Pretérito Perfecto Simple 3 sing Hacer","Pretérito Perfecto Simple 3 plural Matar","Pretérito Perfecto Simple 2 sing Reir","Pretérito Perfecto Simple 1 plural Bailar","Pretérito Perfecto Simple 3 plural Traer",
+			  "Pretérito Perfecto Compuesto 2 plural Pensar","Pretérito Perfecto Compuesto 3 plural Reir","Pretérito Perfecto Compuesto 3 sing Dormir","Pretérito Perfecto Compuesto 2 sing Traer","Pretérito Perfecto Compuesto 2 plural Llevar",
+			  "Pretérito Pluscuamperfecto 3 sing Copiar","Pretérito Pluscuamperfecto 2 plural Empezar","Pretérito Pluscuamperfecto 3 plural Ver","Pretérito Pluscuamperfecto 1 plural Pensar","Pretérito Pluscuamperfecto 2 plural Introducir",
+			  "Pretérito Anterior 1 sing Mirar","Pretérito Anterior 3 sing Empezar","Pretérito Anterior 2 sing Cantar","Pretérito Anterior 3 plural Imprimir","Pretérito Anterior 3 plural Planchar",
+			"Futuro Simple 1 sing Mirar","Futuro Simple 3 sing Ir","Futuro Simple 1 plural Venir","Futuro Simple 2 sing Cocinar","Futuro Simple 2 plura Reir",
+			"Futuro Compuesto 1 sing Marchar","Futuro Compuesto 3 sing Comer","Futuro Compuesto 1 plural Encender","Futuro Compuesto 3 plural Subir","Futuro Compuesto 2 plural Venir",
+			"Condicional Simple 1 sing Comprar","Condicional Simple 1 plural Vender","Condicional Simple 3 plural Marchar","Condicional Simple 2 plural Invitar","Condicional Simple2 sing Aprobar",
+			"Condicional Compuesto 3 sing Leer","Condicional Compuesto 2 plural Escribir","Condicional Compuesto 3 plural Cantar","Condicional Compuesto 2 plural Ver","Condicional Compuesto 2 sing Mirar",
+			  "SUBJUNTIVO - Presente 3 sing Venir","SUBJUNTIVO - Presente 1 sing Comer","SUBJUNTIVO - Presente 3 sing Reir","SUBJUNTIVO - Presente 3 sing Bailar","SUBJUNTIVO - Presente 3 plural Cantar",
+			  "SUBJUNTIVO - Pretérito Imperfecto 2 sing Cocinar","SUBJUNTIVO - Pretérito Imperfecto 2 sing Bailar","SUBJUNTIVO - Pretérito Imperfecto 3 plural Reir","SUBJUNTIVO - Pretérito Imperfecto 2 plural Traer","SUBJUNTIVO - Pretérito Imperfecto 3 plural Hacer",
+			  "SUBJUNTIVO - Pretérito Perfecto Compuesto 3 sing Venir","SUBJUNTIVO - Pretérito Perfecto Compuesto 2 plural Comer","SUBJUNTIVO - Pretérito Perfecto Compuesto 3 plural Pensar","SUBJUNTIVO - Pretérito Perfecto Compuesto 1 plural Escribir","SUBJUNTIVO - Pretérito Perfecto Compuesto 2 sing Copiar",
+			  "SUBJUNTIVO - Pretérito Pluscuamperfecto 1 sing Planchar","SUBJUNTIVO - Pretérito Pluscuamperfecto 3 sing Romper","SUBJUNTIVO - Pretérito Pluscuamperfecto 2 plural Coger","SUBJUNTIVO - Pretérito Pluscuamperfecto 3 plural Pintar","SUBJUNTIVO - Pretérito Pluscuamperfecto 2 sing Copiar",
+			""
+			];
+
+		if ((object1.innerHTML == "") || ((object1.innerHTML != "") && (object2.innerHTML != "")))
+		{
+			// Esta vacio el romano, busco uno
+			// Numero aleatorio entero entre 0 y el numero de arrays
+			var random=Math.floor((Math.random()*array1.length));
+			//alert (random);
+			object1.innerHTML = array1[random];
+			object2.innerHTML = "";
+		} else
+		{
+			// No esta vacio el romano. Pongo el decimal asociado
+			object2.innerHTML = array2[array1.indexOf(object1.innerHTML,1)]; 
+		}
+   }
+
+ 
+//--> 
+</script> 
+ 
+ 
+<BODY> 
+ 
+<H1> 
+Conjuga el tiempo verbal
+</H1> 
+ 
+<TABLE> 
+    <TR> 
+        <TD> 
+		<form action=javascript:Random() name=formulario> 
+		<input type=submit value="Random" name=button> 
+		<font size="55">
+		<br>
+		<tt><div id="object1" style="position:absolute; visibility:show font-family:courier"></div></tt>
+		<br>
+		<tt><div id="object2" style="position:absolute; visibility:show font-family:courier"></div></tt>
+		</font>
+		</form> 
+        </TD> 
+    </TR> 
+</TABLE> 
+ 
+  
+</BODY> 
+ 
+</HTML>
