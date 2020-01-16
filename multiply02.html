@@ -1,0 +1,118 @@
+<HTML>
+<HEAD>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>
+Biderketak taulak
+	</title>
+</HEAD>
+
+<script LANGUAGE="JavaScript">
+
+   function Random () 
+   {
+
+		// Radio button seleccionado
+		var selectedValue = 0;
+		for(var i = 0; i < formulario.group1.length; i++) {
+			if(formulario.group1[i].checked) {
+				selectedValue = formulario.group1[i].value;
+			}
+		}
+
+		//alert (selectedValue);
+
+		if (object1.innerHTML == "")
+		{
+			// Si esta vacio es que no hemos empezado la tabla
+			// -----------------------------------------------
+			object1.innerHTML = selectedValue + " x 1 =";
+		} else
+		{
+			// La tabla esta empezada
+			// ----------------------
+
+			// recupero los 3 posibles valores
+
+			cadena = object1.innerHTML;
+			var sRegEx = new RegExp(" x.*", 'gi')
+			mult1 = cadena.replace (sRegEx, "");
+
+			cadena = object1.innerHTML;
+			var sRegEx = new RegExp("^.*x", 'gi')
+			mult2 = cadena.replace (sRegEx, "");
+			cadena = mult2;
+			var sRegEx = new RegExp("=.*", 'gi')
+			mult2 = cadena.replace (sRegEx, "");
+
+			cadena = object1.innerHTML;
+			var sRegEx = new RegExp("^.*=", 'gi')
+			result = cadena.replace (sRegEx, "");
+			
+
+			// Si me han cambiado de tabla, reinicio todo
+			// ------------------------------------------
+			if (selectedValue != mult1) {
+				mult1 = selectedValue;
+				mult2 = 0;
+				result = "kk";
+			}
+
+			if (result == "") {
+				// No hay resultado. Lo calculo
+				// ----------------------------
+				object1.innerHTML = mult1 + " x " + mult2 + " = " + mult1 * mult2;
+
+			} else
+			{
+				// Hay resultado. Pinto el siguiente
+				// ---------------------------------
+				if (mult2 < 10) {
+					object1.innerHTML = mult1 + " x " + (mult2*1+1) + " =";
+				}
+
+			}
+
+
+		}
+
+   }
+
+ 
+//--> 
+</script> 
+ 
+<BODY> 
+ 
+<H1> 
+Biderkatu...
+</H1> 
+ 
+<TABLE> 
+    <TR> 
+        <TD> 
+		<form action=javascript:Random() name=formulario> 
+		<input type="radio" name="group1" value="2" checked>2
+		<input type="radio" name="group1" value="3" >3
+		<input type="radio" name="group1" value="4" >4
+		<input type="radio" name="group1" value="5" >5
+		<input type="radio" name="group1" value="6" >6
+		<input type="radio" name="group1" value="7" >7
+		<input type="radio" name="group1" value="8" >8
+		<input type="radio" name="group1" value="9" >9
+		<input type="radio" name="group1" value="10" >10
+		<hr>
+		<input type=submit value="Random" name=button> 
+		<font size="55">
+		<br>
+		<tt><div id="object1" style="position:absolute; visibility:show font-family:courier"></div></tt>
+		<br>
+		<tt><div id="object2" style="position:absolute; visibility:show font-family:courier"></div></tt>
+		</font>
+		</form> 
+        </TD> 
+    </TR> 
+</TABLE> 
+  
+</BODY> 
+ 
+</HTML> 
