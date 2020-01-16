@@ -1,0 +1,158 @@
+<HTML>
+<HEAD>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>
+Europako Estatuak
+	</title>
+</HEAD>
+
+<script LANGUAGE="JavaScript">
+var PAIS=["Portugal","Espainia","Frantzia","Andorra","Erresuma Batua","Irlanda","Islandia", "Belgica","Holanda",  "Luxemburgo","Alemania","Polonia", "Txekia","Eslovakia", "Eslovenia","Suiza","Austria","Italia","Kroazia","Bosnia",  "Serbia",  "Montenegro","Kosovo",  "Albania","Macedonia","Grecia","Noruega","Suecia",   "Finlandia","Danimarca","Estonia","Letonia","Lituania","Bielorrusia","Ukrania","Moldavia","Errumania","Bulgaria","Errusia","Georgia","Azerbaijan","Armenia"];
+var CAPI=["Lisboa",  "Madril",  "Paris",   "Andorra","Londres",       "Dublin", "Reykjavik","Brusela","Amsterdam","Luxemburgo","Berlin",  "Varsovia","Praga", "Bratislava","Ljubljana","Berna","Viena",  "Roma",  "Zagreb", "Sarajevo","Belgrado","Podgorica", "Pristina","Tirana", "Skopje",   "Atenas","Oslo",   "Stockholm","Helsinki", "Kopenhage","Tallin", "Riga",   "Vilnius", "Minsk",      "Kiev",   "Chisinau","Bukares",  "Sofia",   "Mosku",  "Atlanta","Baku",      "Yereban"];
+
+var total=0;
+var correctas=0;
+var malas="";
+var indice=0;		// Numero del array que vamos a preguntar
+var aparecidas="";	// Las que he visualizado
+
+function onload ()
+{
+	// Numero aleatorio entre 0 y el numero de elementos del array
+	indice = Math.floor( (Math.random() * (PAIS.length) ) + 0);
+	aparecidas = "," + indice + ",";
+
+	// Visualizar el Pais para que adivine la capital
+	object1.innerHTML = PAIS[indice];
+
+	// Visualizar el contador
+	contador.innerHTML = correctas + " / " + total + "<br>" + malas;
+
+	// Poner texto a los botones
+	// Definir su codigo interno
+	var obj = document.getElementsByName('button');
+	for (var i=0; i<obj.length; i++) 
+	{ 
+		obj[i].value = CAPI[i];
+		obj[i].onclick=function(i) 
+			{
+			      if (total >= PAIS.length) return;
+			      //if (total >= 34) return;
+			
+			      // Ver si coincide la capital
+			      if (indice == CAPI.indexOf(this.value)) {		// El indexOf busca el texto en el array y devuelve el indice
+				  correctas++;
+				  malas = malas + "<font color=0000dd>" + PAIS[indice] + "(" + CAPI[indice] + ")" + "</font>" + "<br>";
+			      } else {
+				  malas = malas + "<font color=dd0000>" + PAIS[indice] + "(" + CAPI[indice] + ")" + "</font>" + "<br>" ;
+			      }
+			      total++;
+			      // Visualizar el contador
+			      contador.innerHTML = correctas + " / " + total + "<br>" + malas;
+
+      			      // Ver si he terminado
+			      if (total >= PAIS.length) {
+				  object1.innerHTML = "AMAIERA !!!"
+				  return;
+			      } 
+
+			      // Selecciono otro elemento que no haya aparecido
+			      indice = Math.floor( (Math.random() * (PAIS.length) ) + 0);
+			      while (aparecidas.match ("," + indice + ",")) {
+				  indice++;
+				  if (indice > PAIS.length - 1) indice=0;
+				    //alert ("Ya ha salido " + PAIS[indice]);
+			      }
+			      object1.innerHTML = PAIS[indice];
+			      aparecidas = aparecidas + indice + ",";
+			      
+			      
+			} 
+	}
+
+}
+
+ 
+//--> 
+</script> 
+ 
+<BODY onLoad=onload()> 
+
+<H1> 
+Europako Estatuak
+</H1> 
+ 
+<TABLE> 
+    <TR> 
+        <TD> 
+
+	<font size="55">
+	<tt><div id="object1" style="position:absolute; visibility:show font-family:courier"></div></tt>
+	<br></font>
+
+	<form action=javascript:Null() name=formulario> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<br>
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<br>
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<br>
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<br>
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<br>
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<br>
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<br>
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<br>
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<br>
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<input type=submit name=button value="" onclick="Boton()"> 
+	<tt>
+
+	<font size="5">
+	<div id="contador" style="position:absolute; visibility:show; font-family:courier; fontsize:2"></div>
+	</font>
+	<br></form> 
+
+        </TD> 
+    </TR> 
+</TABLE> 
+  
+</BODY> 
+ 
+</HTML>
